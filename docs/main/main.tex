@@ -1,0 +1,139 @@
+\documentclass[abstract=on]{scrartcl}
+
+    \newcommand{\lang}{en}
+
+    \usepackage{ifdraft}
+    % If draft remove margins
+    \ifdraft{\usepackage[margin=0.5in]{geometry}}{}
+
+    \usepackage[english]{babel}
+    \usepackage[utf8]{inputenc}
+
+    \usepackage{csquotes}
+
+    \usepackage{ifdraft}
+
+    \usepackage{amsmath, amssymb, mathtools, bbm, amsthm}
+    \usepackage{xcolor,xcolor-solarized}
+    \usepackage{bm}
+
+    \usepackage{graphicx}
+    \usepackage{wrapfig}
+    \usepackage{relsize}
+    \usepackage{makecell}
+    \usepackage{booktabs}
+    \usepackage[font=footnotesize,labelfont=bf]{caption}
+    \usepackage{subcaption}
+    \usepackage{float}
+    \usepackage{multirow} 
+    \usepackage{hyperref}
+    \usepackage{bookmark}
+    
+    \ifdraft{}{
+      % Diagrams
+      \usepackage{tikz} 
+      \usepackage{tikzit}
+      \usetikzlibrary{positioning,fit,calc,decorations.pathreplacing,calligraphy}
+      \input{../diagrams/custom.tikzstyles}    
+    } 
+
+    \newcommand{\inputTikZ}[2]{%  
+
+      \ifdraft{
+        \includegraphics[width=0.5\textwidth]{example-image-a}
+      }{
+        \IfFileExists{#2}{\scalebox{#1}{\input{#2}}}{\includegraphics[width=0.5\textwidth]{example-image-a}}
+      }
+    }
+    
+    % references
+    \usepackage{hyperref}
+    \usepackage{cleveref}
+    \hypersetup{
+        colorlinks = true, 
+        urlcolor = blue,
+        linkcolor = blue, 
+        citecolor = blue 
+      }      
+
+    \usepackage{subfiles} % Load last
+
+    % Theorems
+    \theoremstyle{plain}
+    \newtheorem{assumption}{Assumption}
+    \newtheorem{proposition}{Proposition}
+    \newtheorem{definition}{Definition}
+    \newtheorem{corollary}{Corollary}[proposition]
+
+    % Formatting
+    \setlength{\parindent}{0em}
+    \setlength{\parskip}{0.5em}
+    \setlength{\fboxsep}{1em}
+    \newcommand\headercell[1]{\smash[b]{\begin{tabular}[t]{@{}c@{}} #1 \end{tabular}}}
+    \renewcommand*{\thefootnote}{(\arabic{footnote})}
+
+    % Math commands
+    \newcommand{\diff}{\text{d}}
+    \renewcommand{\Re}{\mathbb{R}}
+    \newcommand{\C}{\mathcal{C}}
+    \newcommand{\F}{\mathcal{F}}
+    \newcommand{\X}{\mathcal{X}}
+    \newcommand{\G}{\mathcal{G}}
+    \newcommand{\I}{\mathcal{I}}
+    \newcommand{\N}{\mathcal{N}}
+    \newcommand{\PF}{\mathcal{P} \F}
+    \renewcommand{\S}{\mathcal{S}}
+
+    \renewcommand{\P}{\mathbb{P}}
+    \newcommand{\E}{\mathbb{E}}
+    \newcommand{\V}{\mathbb{V}\text{ar}}
+
+    \newcommand{\uI}[2][s]{\int^1_0 #2 \ \text{d} #1}
+    \newcommand{\uH}[2][s]{\int^\frac{1}{2}_0 #2 \w \text{d} #1}
+    \newcommand{\uF}[2][s]{\int^1_\frac{1}{2} #2 \ \text{d} #1}
+    \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+    \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+
+    \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+    \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
+    % Bibliography
+
+    \usepackage[
+      bibencoding=utf8, 
+      style=apa, 
+      backend=biber,
+      sorting=ynt
+    ]{biblatex}
+    % \addbibresource{../refs.bib}
+    
+
+    % Make title page
+
+    \author{Andrea Titton}
+    \title{New Project}
+    
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  The abstract
+\end{abstract}
+
+\newpage
+% Introduction
+% \subfile{sections/introduction/introduction.tex}
+
+
+% If draft don't print bibliography nor appendix
+
+\newpage
+\printbibliography
+\pagenumbering{gobble} % stop page numbering
+\newpage
+\appendix
+% \subfile{sections/appendix/appendix.tex}
+
+
+\end{document}
